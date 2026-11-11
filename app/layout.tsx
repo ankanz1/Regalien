@@ -6,6 +6,7 @@ import { MotionProvider } from "@/components/motion-provider";
 import { PageTransition } from "@/components/animation/page-transition";
 import { Preloader } from "@/components/animation/preloader";
 import { ScrollProgress } from "@/components/animation/scroll-progress";
+import { ThemeProvider } from "@/components/theme-provider";
 import { business } from "@/lib/business";
 
 export const metadata: Metadata = {
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export const viewport: Viewport = { themeColor: "#f5f2ec", colorScheme: "light" };
+export const viewport: Viewport = { themeColor: "#F3EEE3", colorScheme: "light" };
 
 const organizationStructuredData = JSON.stringify({
   "@context": "https://schema.org",
@@ -34,19 +35,26 @@ const organizationStructuredData = JSON.stringify({
   sameAs: Object.values(business.socialProfiles).map((profile) => profile.url),
 }).replace(/</g, "\\u003c");
 
+const themeInitializationScript = `(()=>{try{const saved=localStorage.getItem("regalien-theme");const dark=saved==="dark"||(saved!=="light"&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.dataset.theme=dark?"dark":"light";document.documentElement.classList.toggle("dark",dark)}catch{document.documentElement.dataset.theme="light";document.documentElement.classList.remove("dark")}})()`;
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-IN">
+    <html lang="en-IN" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitializationScript }} />
+      </head>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: organizationStructuredData }} />
         <a className="skip-link" href="#main-content">Skip to content</a>
-        <MotionProvider>
-          <ScrollProgress />
-          <SiteHeader />
-          <Preloader />
-          <PageTransition>{children}</PageTransition>
-          <SiteFooter />
-        </MotionProvider>
+        <ThemeProvider>
+          <MotionProvider>
+            <ScrollProgress />
+            <SiteHeader />
+            <Preloader />
+            <PageTransition>{children}</PageTransition>
+            <SiteFooter />
+          </MotionProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,9 +1,10 @@
 import { Button } from "@/components/button";
 import { ProjectGallery } from "@/components/projects/project-gallery";
 import { Reveal } from "@/components/home/reveal";
-import { homepageProjects } from "@/lib/projects";
+import { listPublishedProjects } from "@/lib/project-data";
 
-export function ProjectsPreview() {
+export async function ProjectsPreview() {
+  const homepageProjects = (await listPublishedProjects()).slice(0, 3);
   return (
     <section className="projects-preview section-pad" id="projects-preview" aria-labelledby="projects-title">
       <div className="shell">

@@ -3,7 +3,7 @@ import { ContactPrompt } from "@/components/inner-page/contact-prompt";
 import { ProjectGallery } from "@/components/projects/project-gallery";
 import { Reveal } from "@/components/home/reveal";
 import { business } from "@/lib/business";
-import { projectsWithPhotos } from "@/lib/projects";
+import { listPublishedProjects } from "@/lib/project-data";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
@@ -12,7 +12,8 @@ export const metadata = createPageMetadata({
   path: "/projects",
 });
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const projects = await listPublishedProjects();
   return (
     <main id="main-content" className="projects-page">
       <section className="portfolio-hero" aria-labelledby="projects-page-title">
@@ -28,7 +29,7 @@ export default function ProjectsPage() {
       <section className="portfolio-content section-pad" aria-label="Regalien project gallery">
         <div className="shell">
           <div className="portfolio-intro-row"><span className="eyebrow">The collection</span><span>PHOTOGRAPHS BY PROJECT</span></div>
-          <ProjectGallery projects={projectsWithPhotos} />
+          <ProjectGallery projects={projects} />
         </div>
       </section>
       <ContactPrompt />

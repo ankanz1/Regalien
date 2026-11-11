@@ -1,5 +1,6 @@
 import { EnquiryCta } from "@/components/contact/enquiry-cta";
 import { WhatsAppLink } from "@/components/contact/whatsapp-link";
+import { PhoneLink } from "@/components/contact/phone-link";
 import { Reveal } from "@/components/home/reveal";
 import { business } from "@/lib/business";
 
@@ -13,8 +14,8 @@ export function ContactCta() {
         </Reveal>
         <Reveal className="contact-cta-actions" delay={0.12}>
           <EnquiryCta />
-          <WhatsAppLink ariaLabel={`Chat with ${business.brandName} on WhatsApp at ${business.whatsapp.display}`}>Chat on WhatsApp</WhatsAppLink>
-          <div className="contact-phones"><span className="contact-phone-item"><small>Primary call</small><a href={business.phones.primary.href} aria-label={`Call primary number ${business.phones.primary.display}`}>{business.phones.primary.display}</a></span><span className="contact-phone-item"><small>Secondary call</small><a href={business.phones.secondary.href} aria-label={`Call secondary number ${business.phones.secondary.display}`}>{business.phones.secondary.display}</a></span></div>
+          <WhatsAppLink ariaLabel={`Message ${business.brandName} on WhatsApp`}>WhatsApp</WhatsAppLink>
+          <div className="contact-phones"><PhoneLink /><PhoneLink secondary /></div>
         </Reveal>
       </div>
     </section>

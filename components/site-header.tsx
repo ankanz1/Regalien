@@ -6,6 +6,9 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { WhatsAppLink } from "@/components/contact/whatsapp-link";
+import { PhoneLink } from "@/components/contact/phone-link";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { useTheme } from "@/components/theme-provider";
 import { business } from "@/lib/business";
 
 const links = [
@@ -21,6 +24,15 @@ export function SiteHeader() {
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
+  const { dark, ready, onChange } = useTheme();
+  const themeToggle = ready ? (
+    <ThemeToggle
+      dark={dark}
+      onChange={onChange}
+      label={dark ? "Switch to light theme" : "Switch to dark theme"}
+      className="theme-toggle-control"
+    />
+  ) : <span className="theme-toggle-placeholder" aria-hidden="true" />;
 
   useEffect(() => {
     if (!open) return;
@@ -79,6 +91,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="header-actions">
+            {themeToggle}
             <Link href="/contact" className="header-cta">Enquire <ArrowUpRight size={14} aria-hidden="true" /></Link>
           </div>
 
@@ -111,9 +124,13 @@ export function SiteHeader() {
                   </Link>
                 ))}
               </nav>
+              <div className="mobile-menu-theme">
+                <span>Appearance</span>
+                {themeToggle}
+              </div>
               <div className="mobile-menu-bottom">
-                <WhatsAppLink ariaLabel={`Message ${business.brandName} on WhatsApp at ${business.whatsapp.display}`}>Start a conversation</WhatsAppLink>
-                <a href={business.phones.primary.href} aria-label={`Call ${business.brandName}`}>Call the office</a>
+                <WhatsAppLink ariaLabel={`Message ${business.brandName} on WhatsApp`}>WhatsApp</WhatsAppLink>
+                <PhoneLink />
               </div>
             </div>
           </m.div>

@@ -1,5 +1,6 @@
 import { EnquiryCta } from "@/components/contact/enquiry-cta";
 import { WhatsAppLink } from "@/components/contact/whatsapp-link";
+import { PhoneLink } from "@/components/contact/phone-link";
 import { Reveal } from "@/components/home/reveal";
 import { business } from "@/lib/business";
 
@@ -17,7 +18,8 @@ export function ContactPrompt({ whatsappMessage }: ContactPromptProps) {
         </Reveal>
         <Reveal className="inner-contact-actions" delay={0.1}>
           <EnquiryCta />
-          <WhatsAppLink message={whatsappMessage} ariaLabel={`Chat with ${business.brandName} on WhatsApp at ${business.whatsapp.display}`}>Chat on WhatsApp</WhatsAppLink>
+          <WhatsAppLink message={whatsappMessage} ariaLabel={`Message ${business.brandName} on WhatsApp`}>WhatsApp</WhatsAppLink>
+          <PhoneLink />
         </Reveal>
       </div>
     </section>

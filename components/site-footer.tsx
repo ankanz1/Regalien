@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { business } from "@/lib/business";
 import { WhatsAppLink } from "@/components/contact/whatsapp-link";
+import { PhoneLink } from "@/components/contact/phone-link";
 import { SocialLinks } from "@/components/contact/social-links";
 
 export function SiteFooter() {
@@ -10,7 +11,7 @@ export function SiteFooter() {
       <div className="shell">
         <div className="footer-topline">
           <span className="eyebrow">Have a space in mind?</span>
-          <WhatsAppLink ariaLabel={`Message ${business.brandName} on WhatsApp at ${business.whatsapp.display}`}>Begin with a conversation</WhatsAppLink>
+          <WhatsAppLink ariaLabel={`Message ${business.brandName} on WhatsApp`}>WhatsApp</WhatsAppLink>
         </div>
         <div className="footer-main">
           <div className="footer-brand">
@@ -27,9 +28,9 @@ export function SiteFooter() {
           </nav>
           <div className="footer-column footer-contact">
             <span className="eyebrow">Call the office</span>
-            <span className="footer-phone"><small>Primary</small><a href={business.phones.primary.href}>{business.phones.primary.display}</a></span>
-            <span className="footer-phone"><small>Secondary</small><a href={business.phones.secondary.href}>{business.phones.secondary.display}</a></span>
-            <WhatsAppLink className="footer-whatsapp" ariaLabel={`Message ${business.brandName} on WhatsApp at ${business.whatsapp.display}`}>WhatsApp · {business.whatsapp.display}</WhatsAppLink>
+            <PhoneLink />
+            <PhoneLink secondary />
+            <WhatsAppLink className="footer-whatsapp" ariaLabel={`Message ${business.brandName} on WhatsApp`}>WhatsApp</WhatsAppLink>
           </div>
           <div className="footer-column footer-address">
             <span className="eyebrow">Find us</span>

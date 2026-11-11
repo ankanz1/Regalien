@@ -4,6 +4,7 @@ import Image from "next/image";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import type { InteriorProject } from "@/lib/projects";
 
 type ProjectGalleryProps = {
@@ -114,6 +115,7 @@ export function ProjectGallery({ projects }: ProjectGalleryProps) {
                 <span className="project-card-action">View project <ArrowRight size={13} aria-hidden="true" /></span>
               </span>
             </button>
+            <Link className="project-detail-link" href={`/projects/${project.id}`}>Project details <ArrowRight size={13} aria-hidden="true" /></Link>
           </m.article>
         ))}
       </div>

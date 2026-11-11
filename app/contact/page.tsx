@@ -1,7 +1,8 @@
-import { ArrowUpRight, MapPin, MessageCircle, Phone } from "lucide-react";
+import { ArrowUpRight, MapPin, Phone } from "lucide-react";
 import { EnquiryForm } from "@/components/contact/enquiry-form";
 import { SocialLinks } from "@/components/contact/social-links";
 import { WhatsAppLink } from "@/components/contact/whatsapp-link";
+import { WhatsAppIcon } from "@/components/contact/whatsapp-icon";
 import { AnimatedLines } from "@/components/animation/animated-lines";
 import { Reveal } from "@/components/home/reveal";
 import { business } from "@/lib/business";
@@ -33,14 +34,14 @@ export default function ContactPage() {
         <div className="shell contact-main-grid">
           <Reveal className="contact-info-panel">
             <div className="contact-info-heading"><span className="eyebrow">Get in touch</span><h2>Good things<br />begin with <em>a hello.</em></h2></div>
-            <a className="contact-action-row" href={business.whatsapp.url + `?text=${encodeURIComponent(`Hello ${business.brandName}, I would like to discuss an interior design enquiry.`)}`} target="_blank" rel="noopener noreferrer" aria-label={`Message ${business.brandName} on WhatsApp at ${business.whatsapp.display}`}>
-              <span className="contact-action-icon"><MessageCircle size={19} aria-hidden="true" /></span><span><small>WHATSAPP · PRIMARY CONTACT</small><strong>{business.whatsapp.display}</strong></span><ArrowUpRight size={17} aria-hidden="true" />
+            <a className="contact-action-row" href={business.whatsapp.url + `?text=${encodeURIComponent(`Hello ${business.brandName}, I would like to discuss an interior design enquiry.`)}`} target="_blank" rel="noopener noreferrer" aria-label={`Message ${business.brandName} on WhatsApp`}>
+              <span className="contact-action-icon"><WhatsAppIcon size={19} /></span><span><small>WHATSAPP · PRIMARY CONTACT</small><strong>WhatsApp</strong></span><ArrowUpRight size={17} aria-hidden="true" />
             </a>
-            <a className="contact-action-row" href={business.phones.primary.href} aria-label={`Call primary number ${business.phones.primary.display}`}>
-              <span className="contact-action-icon"><Phone size={19} aria-hidden="true" /></span><span><small>PRIMARY CALLING CONTACT</small><strong>{business.phones.primary.display}</strong></span><ArrowUpRight size={17} aria-hidden="true" />
+            <a className="contact-action-row" href={business.phones.primary.href} aria-label={`Call ${business.brandName} office`}>
+              <span className="contact-action-icon"><Phone size={19} aria-hidden="true" /></span><span><small>PRIMARY CALLING CONTACT</small><strong>Call Office</strong></span><ArrowUpRight size={17} aria-hidden="true" />
             </a>
-            <a className="contact-action-row" href={business.phones.secondary.href} aria-label={`Call secondary number ${business.phones.secondary.display}`}>
-              <span className="contact-action-icon"><Phone size={19} aria-hidden="true" /></span><span><small>SECONDARY CALLING CONTACT</small><strong>{business.phones.secondary.display}</strong></span><ArrowUpRight size={17} aria-hidden="true" />
+            <a className="contact-action-row" href={business.phones.secondary.href} aria-label={`Call ${business.brandName} on the secondary line`}>
+              <span className="contact-action-icon"><Phone size={19} aria-hidden="true" /></span><span><small>SECONDARY CALLING CONTACT</small><strong>Call Office · Secondary</strong></span><ArrowUpRight size={17} aria-hidden="true" />
             </a>
 
             <div className="contact-address-block">
@@ -59,7 +60,7 @@ export default function ContactPage() {
         </div>
       </section>
       <section className="contact-note" aria-label="Regalien location">
-        <div className="shell contact-note-inner"><span>REGALIEN INFRASTRUCTURE PVT. LTD.</span><span>{business.locationFull}</span><WhatsAppLink ariaLabel={`Message ${business.brandName} on WhatsApp at ${business.whatsapp.display}`}>Message on WhatsApp</WhatsAppLink></div>
+        <div className="shell contact-note-inner"><span>REGALIEN INFRASTRUCTURE PVT. LTD.</span><span>{business.locationFull}</span><WhatsAppLink ariaLabel={`Message ${business.brandName} on WhatsApp`}>WhatsApp</WhatsAppLink></div>
       </section>
     </main>
   );
